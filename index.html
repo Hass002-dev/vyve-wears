@@ -1277,7 +1277,9 @@
             background: var(--white);
             max-width: 620px;
             width: 100%;
-            padding: 50px;
+            max-height: 88vh;
+            overflow-y: auto;
+            padding: 40px 50px 36px;
             position: relative;
             animation: modalIn 0.3s var(--ease);
         }
@@ -1326,6 +1328,25 @@
         }
         .size-table tr:last-child td { border-bottom: none; }
         .size-table tr:nth-child(even) td { background: var(--light); }
+
+        .modal-back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 28px;
+            padding: 12px 26px;
+            background: none;
+            border: 1.5px solid var(--black);
+            color: var(--black);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background 0.3s, color 0.3s;
+        }
+        .modal-back-btn:hover { background: var(--black); color: var(--white); }
 
         /* =============================================
            TESTIMONIALS
@@ -2271,7 +2292,7 @@
             $('#sizeModal').addClass('open');
             $('body').css('overflow', 'hidden');
         });
-        $('#sizeModalClose, #sizeModal').on('click', function (e) {
+        $('#sizeModalClose, #sizeModalBack, #sizeModal').on('click', function (e) {
             if (e.target === this) {
                 $('#sizeModal').removeClass('open');
                 $('body').css('overflow', '');
@@ -2358,6 +2379,7 @@
                     </tr>
                 </tbody>
             </table>
+            <button type="button" class="modal-back-btn" id="sizeModalBack">&#8592; Back</button>
         </div>
     </div>
 
