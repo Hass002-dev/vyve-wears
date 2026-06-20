@@ -1120,9 +1120,418 @@
             .about-stamp { width: 130px; height: 130px; right: -18px; bottom: -18px; }
             .about-stamp .stamp-year { font-size: 1.7rem; }
         }
+
+        /* =============================================
+           ANNOUNCEMENT BAR
+        ============================================= */
+        .announce-bar {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1001;
+            height: 42px;
+            background: #080808;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 60px;
+            transition: transform 0.4s var(--ease);
+        }
+        .announce-bar.hidden { transform: translateY(-100%); }
+
+        .announce-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.62rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.7);
+            text-align: center;
+        }
+        .announce-text strong { color: var(--white); }
+
+        .announce-close {
+            position: absolute;
+            right: 20px;
+            background: none;
+            border: none;
+            color: rgba(255,255,255,0.35);
+            font-size: 1.1rem;
+            cursor: pointer;
+            line-height: 1;
+            transition: color 0.3s;
+            padding: 6px;
+        }
+        .announce-close:hover { color: var(--white); }
+
+        /* Push nav below the announcement bar */
+        .nav { top: 42px; }
+        .nav.bar-gone { top: 0; }
+
+        /* =============================================
+           COUNTDOWN
+        ============================================= */
+        .countdown-wrap {
+            background: #0a0a0a;
+            padding: 70px 60px;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .countdown-eyebrow {
+            font-size: 0.63rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--white);
+            font-weight: 700;
+            margin-bottom: 14px;
+            opacity: 0.45;
+        }
+        .countdown-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(1.3rem, 3vw, 2rem);
+            color: var(--white);
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 50px;
+        }
+        .countdown-grid {
+            display: flex;
+            gap: 0;
+            justify-content: center;
+            align-items: flex-start;
+        }
+        .countdown-block {
+            min-width: 110px;
+            text-align: center;
+            padding: 0 20px;
+            border-right: 1px solid rgba(255,255,255,0.08);
+        }
+        .countdown-block:last-child { border-right: none; }
+        .countdown-num {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(3rem, 7vw, 5.5rem);
+            font-weight: 900;
+            color: var(--white);
+            line-height: 1;
+            display: block;
+        }
+        .countdown-label {
+            font-size: 0.58rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.3);
+            margin-top: 12px;
+            display: block;
+        }
+        .countdown-date-note {
+            margin-top: 40px;
+            font-size: 0.72rem;
+            letter-spacing: 3px;
+            color: rgba(255,255,255,0.3);
+            text-transform: uppercase;
+        }
+
+        /* =============================================
+           SIZE GUIDE LINK
+        ============================================= */
+        .size-guide-link {
+            display: block;
+            font-size: 0.68rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            color: var(--muted);
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            cursor: pointer;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            background: none;
+            border: none;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            transition: color 0.3s;
+            text-align: left;
+        }
+        .size-guide-link:hover { color: var(--black); }
+
+        /* =============================================
+           SIZE GUIDE MODAL
+        ============================================= */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.65);
+            -webkit-backdrop-filter: blur(5px);
+            backdrop-filter: blur(5px);
+            z-index: 5000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .modal-overlay.open { display: flex; }
+
+        .modal-box {
+            background: var(--white);
+            max-width: 620px;
+            width: 100%;
+            padding: 50px;
+            position: relative;
+            animation: modalIn 0.3s var(--ease);
+        }
+        @keyframes modalIn {
+            from { transform: translateY(24px); opacity: 0; }
+            to   { transform: translateY(0);    opacity: 1; }
+        }
+        .modal-close {
+            position: absolute;
+            top: 16px; right: 22px;
+            background: none; border: none;
+            font-size: 1.7rem;
+            color: var(--muted);
+            cursor: pointer;
+            line-height: 1;
+            transition: color 0.3s;
+        }
+        .modal-close:hover { color: var(--black); }
+
+        .modal-box h3 { font-size: 1.3rem; margin-bottom: 8px; }
+        .modal-box .modal-note {
+            font-size: 0.82rem;
+            color: var(--muted);
+            margin-bottom: 30px;
+            line-height: 1.7;
+        }
+        .size-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.82rem;
+        }
+        .size-table th {
+            background: var(--black);
+            color: var(--white);
+            padding: 12px 16px;
+            text-align: left;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.62rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        .size-table td {
+            padding: 12px 16px;
+            border-bottom: 1px solid #e8e8e8;
+            color: var(--mid);
+        }
+        .size-table tr:last-child td { border-bottom: none; }
+        .size-table tr:nth-child(even) td { background: var(--light); }
+
+        /* =============================================
+           TESTIMONIALS
+        ============================================= */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+            margin-top: 65px;
+        }
+        .testimonial-card {
+            background: var(--white);
+            border: 1px solid #e0e0e0;
+            padding: 40px 34px;
+            position: relative;
+            transition: transform 0.35s var(--ease), box-shadow 0.35s;
+        }
+        .testimonial-card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 24px 55px rgba(0,0,0,0.09);
+        }
+        .stars {
+            display: flex;
+            gap: 4px;
+            margin-bottom: 22px;
+        }
+        .star {
+            display: inline-block;
+            width: 15px; height: 15px;
+            background: var(--black);
+            clip-path: polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);
+        }
+        .quote-mark {
+            position: absolute;
+            top: 20px; right: 26px;
+            font-family: Georgia, serif;
+            font-size: 5rem;
+            line-height: 1;
+            color: rgba(0,0,0,0.04);
+            font-weight: 900;
+            pointer-events: none;
+        }
+        .testimonial-card blockquote {
+            font-size: 0.92rem;
+            color: var(--mid);
+            line-height: 1.85;
+            font-style: italic;
+            margin-bottom: 28px;
+        }
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .author-avatar {
+            width: 42px; height: 42px;
+            border-radius: 50%;
+            background: var(--black);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 900;
+            color: var(--white);
+            flex-shrink: 0;
+        }
+        .author-name {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--black);
+        }
+        .author-location {
+            font-size: 0.72rem;
+            color: var(--muted);
+            margin-top: 3px;
+        }
+        @media (max-width: 900px) {
+            .testimonials-grid { grid-template-columns: 1fr; }
+            .cookie-banner { flex-direction: column; align-items: flex-start; padding: 24px 30px; }
+            .announce-bar { padding: 0 50px 0 16px; }
+            .countdown-wrap { padding: 60px 30px; }
+            .countdown-block { min-width: 70px; padding: 0 12px; }
+            .modal-box { padding: 36px 28px; }
+        }
+
+        /* =============================================
+           COOKIE BANNER
+        ============================================= */
+        .cookie-banner {
+            position: fixed;
+            bottom: 0; left: 0; right: 0;
+            z-index: 4000;
+            background: var(--black);
+            border-top: 1px solid rgba(255,255,255,0.08);
+            padding: 22px 60px;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            justify-content: space-between;
+            transform: translateY(100%);
+            transition: transform 0.5s var(--ease);
+        }
+        .cookie-banner.show { transform: translateY(0); }
+
+        .cookie-text {
+            font-size: 0.82rem;
+            color: rgba(255,255,255,0.5);
+            line-height: 1.7;
+            max-width: 560px;
+        }
+        .cookie-text a { color: var(--white); text-underline-offset: 3px; }
+
+        .cookie-btns { display: flex; gap: 12px; flex-shrink: 0; }
+
+        .cookie-accept {
+            background: var(--white);
+            color: var(--black);
+            border: none;
+            padding: 12px 28px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .cookie-accept:hover { background: var(--accent-dark); }
+
+        .cookie-decline {
+            background: none;
+            color: rgba(255,255,255,0.35);
+            border: 1px solid rgba(255,255,255,0.15);
+            padding: 12px 22px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: border-color 0.3s, color 0.3s;
+        }
+        .cookie-decline:hover { border-color: rgba(255,255,255,0.4); color: rgba(255,255,255,0.65); }
+
+        /* =============================================
+           BACK TO TOP + WHATSAPP
+        ============================================= */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px; right: 30px;
+            z-index: 800;
+            width: 48px; height: 48px;
+            background: var(--black);
+            color: var(--white);
+            border: 1.5px solid rgba(255,255,255,0.12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(14px);
+            transition: opacity 0.35s, transform 0.35s, background 0.3s;
+            font-size: 1.1rem;
+            line-height: 1;
+        }
+        .back-to-top.show {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+        .back-to-top:hover { background: #222; }
+
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 90px; right: 28px;
+            z-index: 800;
+            width: 52px; height: 52px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 30px rgba(37,211,102,0.55);
+        }
     </style>
 </head>
 <body>
+
+    <!-- ANNOUNCEMENT BAR -->
+    <div class="announce-bar" id="announceBar">
+        <p class="announce-text">
+            <strong>Free delivery</strong> on orders over NLe 500&nbsp;&nbsp;✦&nbsp;&nbsp;Collection 02 <strong>dropping soon</strong>
+        </p>
+        <button type="button" class="announce-close" id="announceClose" aria-label="Close announcement">&times;</button>
+    </div>
 
     <!-- TOAST NOTIFICATION -->
     <div class="toast" id="toast"></div>
@@ -1183,6 +1592,33 @@
     </section>
 
     <!-- ══════════════════════════════════
+         COUNTDOWN — NEXT DROP
+    ══════════════════════════════════ -->
+    <div class="countdown-wrap">
+        <p class="countdown-eyebrow">Mark Your Calendar</p>
+        <h2 class="countdown-title">Collection 02 — Next Drop</h2>
+        <div class="countdown-grid">
+            <div class="countdown-block">
+                <span class="countdown-num" id="cd-days">00</span>
+                <span class="countdown-label">Days</span>
+            </div>
+            <div class="countdown-block">
+                <span class="countdown-num" id="cd-hours">00</span>
+                <span class="countdown-label">Hours</span>
+            </div>
+            <div class="countdown-block">
+                <span class="countdown-num" id="cd-mins">00</span>
+                <span class="countdown-label">Minutes</span>
+            </div>
+            <div class="countdown-block">
+                <span class="countdown-num" id="cd-secs">00</span>
+                <span class="countdown-label">Seconds</span>
+            </div>
+        </div>
+        <p class="countdown-date-note">5 September 2026 — Limited Release</p>
+    </div>
+
+    <!-- ══════════════════════════════════
          SHOP
     ══════════════════════════════════ -->
     <section id="shop" class="light-section">
@@ -1205,6 +1641,7 @@
                     </div>
                     <h3>"Not Loud. Felt." Tee</h3>
                     <p class="product-price">NLe 350.00</p>
+                    <button type="button" class="size-guide-link" data-modal="sizeModal">Size Guide &rarr;</button>
                     <div class="product-controls">
                         <select class="size-select item-size" title="Select size" aria-label="Select size">
                             <option value="">Size</option>
@@ -1225,6 +1662,7 @@
                     </div>
                     <h3>VYVE Signature Tee</h3>
                     <p class="product-price">NLe 350.00</p>
+                    <button type="button" class="size-guide-link" data-modal="sizeModal">Size Guide &rarr;</button>
                     <div class="product-controls">
                         <select class="size-select item-size" title="Select size" aria-label="Select size">
                             <option value="">Size</option>
@@ -1246,6 +1684,7 @@
                     </div>
                     <h3>VYVE Essential Cap</h3>
                     <p class="product-price">NLe 150.00</p>
+                    <button type="button" class="size-guide-link" data-modal="sizeModal">Size Guide &rarr;</button>
                     <div class="product-controls">
                         <select class="size-select item-size" title="Select size" aria-label="Select size">
                             <option value="OS">One Size</option>
@@ -1262,6 +1701,7 @@
                     </div>
                     <h3>VYVE Premium Hoodie</h3>
                     <p class="product-price">NLe 550.00</p>
+                    <button type="button" class="size-guide-link" data-modal="sizeModal">Size Guide &rarr;</button>
                     <div class="product-controls">
                         <select class="size-select item-size" title="Select size" aria-label="Select size">
                             <option value="">Size</option>
@@ -1281,6 +1721,7 @@
                     </div>
                     <h3>VYVE Tracksuit Set</h3>
                     <p class="product-price">NLe 750.00</p>
+                    <button type="button" class="size-guide-link" data-modal="sizeModal">Size Guide &rarr;</button>
                     <div class="product-controls">
                         <select class="size-select item-size" title="Select size" aria-label="Select size">
                             <option value="">Size</option>
@@ -1300,6 +1741,7 @@
                     </div>
                     <h3>VYVE Sweatshirt</h3>
                     <p class="product-price">NLe 420.00</p>
+                    <button type="button" class="size-guide-link" data-modal="sizeModal">Size Guide &rarr;</button>
                     <div class="product-controls">
                         <select class="size-select item-size" title="Select size" aria-label="Select size">
                             <option value="">Size</option>
@@ -1391,6 +1833,67 @@
                     <h3>Long-Term Vision</h3>
                     <p>VYVE is built for the long game — from Sierra Leone to international recognition. A brand committed to sustainability, originality, and consistent quality.</p>
                     <span class="why-card-num">06</span>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════
+         TESTIMONIALS
+    ══════════════════════════════════ -->
+    <section class="light-section">
+        <div class="wrap">
+            <div class="section-head center">
+                <div class="eyebrow">What Our Customers Say</div>
+                <h2 class="section-title">Real People.<br>Real VYVE.</h2>
+            </div>
+
+            <div class="testimonials-grid">
+
+                <div class="testimonial-card reveal">
+                    <span class="quote-mark">&ldquo;</span>
+                    <div class="stars">
+                        <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
+                    </div>
+                    <blockquote>"The quality is unreal for a local brand. I wear my VYVE tee everywhere and always get compliments. This is Sierra Leone fashion done right."</blockquote>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">AK</div>
+                        <div>
+                            <div class="author-name">Aminata K.</div>
+                            <div class="author-location">Freetown, Sierra Leone</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card reveal d1">
+                    <span class="quote-mark">&ldquo;</span>
+                    <div class="stars">
+                        <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
+                    </div>
+                    <blockquote>"Got the Essential Cap and I was gone. Clean, fits perfectly, premium feel. VYVE is on a different level — can't wait for Collection 02."</blockquote>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">MJ</div>
+                        <div>
+                            <div class="author-name">Mohamed J.</div>
+                            <div class="author-location">Bo, Sierra Leone</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card reveal d2">
+                    <span class="quote-mark">&ldquo;</span>
+                    <div class="stars">
+                        <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
+                    </div>
+                    <blockquote>"Ordered the Signature Tee — it arrived fast, packaging was clean. You can feel they care about every detail. Definitely ordering again."</blockquote>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">FC</div>
+                        <div>
+                            <div class="author-name">Fatima C.</div>
+                            <div class="author-location">Freetown, Sierra Leone</div>
+                        </div>
+                    </div>
                 </div>
 
             </div>
@@ -1729,8 +2232,153 @@
         }
         checkReveal();
 
+        /* ── ANNOUNCEMENT BAR ── */
+        $('#announceClose').on('click', function () {
+            $('#announceBar').addClass('hidden');
+            $('#mainNav').addClass('bar-gone');
+            sessionStorage.setItem('barDismissed', '1');
+        });
+        if (sessionStorage.getItem('barDismissed') === '1') {
+            $('#announceBar').addClass('hidden');
+            $('#mainNav').addClass('bar-gone');
+        }
+
+        /* ── COUNTDOWN TIMER ── */
+        (function () {
+            var target = new Date('2026-09-05T00:00:00').getTime();
+            function tick() {
+                var now  = new Date().getTime();
+                var diff = target - now;
+                if (diff <= 0) {
+                    $('#cd-days, #cd-hours, #cd-mins, #cd-secs').text('00');
+                    return;
+                }
+                var d = Math.floor(diff / 86400000);
+                var h = Math.floor((diff % 86400000) / 3600000);
+                var m = Math.floor((diff % 3600000)  / 60000);
+                var s = Math.floor((diff % 60000)    / 1000);
+                $('#cd-days').text(String(d).padStart(2,'0'));
+                $('#cd-hours').text(String(h).padStart(2,'0'));
+                $('#cd-mins').text(String(m).padStart(2,'0'));
+                $('#cd-secs').text(String(s).padStart(2,'0'));
+            }
+            tick();
+            setInterval(tick, 1000);
+        })();
+
+        /* ── SIZE GUIDE MODAL ── */
+        $(document).on('click', '.size-guide-link', function () {
+            $('#sizeModal').addClass('open');
+            $('body').css('overflow', 'hidden');
+        });
+        $('#sizeModalClose, #sizeModal').on('click', function (e) {
+            if (e.target === this) {
+                $('#sizeModal').removeClass('open');
+                $('body').css('overflow', '');
+            }
+        });
+        $(document).on('keydown', function (e) {
+            if (e.key === 'Escape') {
+                $('#sizeModal').removeClass('open');
+                $('body').css('overflow', '');
+            }
+        });
+
+        /* ── COOKIE CONSENT ── */
+        if (!localStorage.getItem('vyveCookieChoice')) {
+            setTimeout(function () {
+                $('#cookieBanner').addClass('show');
+            }, 1800);
+        }
+        $('#cookieAccept, #cookieDecline').on('click', function () {
+            localStorage.setItem('vyveCookieChoice', $(this).attr('id') === 'cookieAccept' ? 'accepted' : 'declined');
+            $('#cookieBanner').removeClass('show');
+        });
+
+        /* ── BACK TO TOP ── */
+        $(window).on('scroll.btt', function () {
+            if ($(window).scrollTop() > 500) {
+                $('#backToTop').addClass('show');
+            } else {
+                $('#backToTop').removeClass('show');
+            }
+        });
+        $('#backToTop').on('click', function () {
+            $('html, body').animate({ scrollTop: 0 }, 500);
+        });
+
     });
     </script>
+
+    <!-- SIZE GUIDE MODAL -->
+    <div class="modal-overlay" id="sizeModal" role="dialog" aria-modal="true" aria-label="Size Guide">
+        <div class="modal-box">
+            <button type="button" class="modal-close" id="sizeModalClose" aria-label="Close size guide">&times;</button>
+            <h3>VYVE Size Guide</h3>
+            <p class="modal-note">Measurements are in inches (cm). For the best fit, measure your chest at its widest point, shoulder to shoulder, and body length from top of shoulder to hem.</p>
+            <table class="size-table">
+                <thead>
+                    <tr>
+                        <th>Size</th>
+                        <th>Chest</th>
+                        <th>Length</th>
+                        <th>Shoulder</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>XS</strong></td>
+                        <td>34&ndash;36&Prime; (86&ndash;91 cm)</td>
+                        <td>26&Prime; (66 cm)</td>
+                        <td>16&Prime; (40 cm)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>S</strong></td>
+                        <td>36&ndash;38&Prime; (91&ndash;96 cm)</td>
+                        <td>27&Prime; (68 cm)</td>
+                        <td>17&Prime; (43 cm)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>M</strong></td>
+                        <td>38&ndash;40&Prime; (96&ndash;101 cm)</td>
+                        <td>28&Prime; (71 cm)</td>
+                        <td>18&Prime; (45 cm)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>L</strong></td>
+                        <td>40&ndash;42&Prime; (101&ndash;106 cm)</td>
+                        <td>29&Prime; (73 cm)</td>
+                        <td>19&Prime; (48 cm)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>XL</strong></td>
+                        <td>42&ndash;44&Prime; (106&ndash;112 cm)</td>
+                        <td>30&Prime; (76 cm)</td>
+                        <td>20&Prime; (50 cm)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- COOKIE CONSENT BANNER -->
+    <div class="cookie-banner" id="cookieBanner" role="region" aria-label="Cookie consent">
+        <p class="cookie-text">We use cookies to enhance your experience and understand how you interact with our site. See our <a href="#">Privacy Policy</a> for details.</p>
+        <div class="cookie-btns">
+            <button type="button" class="cookie-accept" id="cookieAccept">Accept</button>
+            <button type="button" class="cookie-decline" id="cookieDecline">Decline</button>
+        </div>
+    </div>
+
+    <!-- WHATSAPP FLOATING BUTTON -->
+    <a class="whatsapp-btn" href="https://wa.me/23288891553" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+        <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#fff" d="M16 2.667C8.636 2.667 2.667 8.636 2.667 16c0 2.34.63 4.63 1.822 6.633L2.667 29.333l6.9-1.8A13.28 13.28 0 0016 29.333c7.364 0 13.333-5.97 13.333-13.333S23.364 2.667 16 2.667zm0 24.267a11.03 11.03 0 01-5.6-1.527l-.4-.24-4.093 1.067 1.093-3.987-.267-.413A10.928 10.928 0 015.04 16C5.04 9.94 9.94 5.04 16 5.04c2.947 0 5.72 1.147 7.8 3.227a10.96 10.96 0 013.227 7.8c-.014 6.073-4.914 10.867-11.027 10.867zm6.027-8.173c-.333-.167-1.96-.967-2.267-1.08-.307-.107-.533-.16-.76.16-.227.32-.867 1.08-1.067 1.307-.2.213-.387.24-.72.08-.333-.16-1.413-.52-2.693-1.653-.993-.893-1.667-1.987-1.867-2.32-.187-.333-.013-.507.147-.68.147-.147.333-.387.493-.587.16-.187.213-.32.32-.533.107-.213.053-.4-.027-.56-.08-.16-.76-1.827-1.04-2.507-.28-.667-.56-.573-.76-.587-.2-.013-.413-.013-.627-.013-.213 0-.56.08-.853.4-.293.32-1.12 1.093-1.12 2.667 0 1.573 1.147 3.093 1.307 3.307.16.213 2.267 3.453 5.493 4.84.76.333 1.36.533 1.827.68.773.24 1.467.2 2.013.12.614-.093 1.96-.8 2.24-1.573.28-.773.28-1.44.187-1.573-.08-.147-.307-.227-.64-.387z"/>
+        </svg>
+    </a>
+
+    <!-- BACK TO TOP -->
+    <button type="button" class="back-to-top" id="backToTop" aria-label="Back to top">&#8593;</button>
 
 </body>
 </html>
